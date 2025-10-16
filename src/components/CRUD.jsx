@@ -138,7 +138,8 @@ export const CRUD = () => {
       </div>
 
       {/* Employee Cards */}
-      <div className="relative z-10 w-full max-w-6xl">
+      {/* <div className="relative z-10 w-full max-w-6xl"> */}
+      <div className="p-4 border rounded-lg shadow bg-white overflow-x-auto max-w-full">
         {loading ? (
           <div className="text-center text-gray-300 mt-10 text-lg">Loading...</div>
         ) : filteredList.length === 0 ? (
