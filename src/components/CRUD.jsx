@@ -48,12 +48,20 @@ export const CRUD = () => {
     e.preventDefault();
     try {
       if (editId) {
-        await axios.put(`${BASE_URL}/${editId}`, empObject);
+        const updatedEmp = {
+          employeeName: empObject.employeeName,
+          employeeEmail: empObject.employeeEmail,
+          employeePhone: empObject.employeePhone,
+          employeeDepartment: empObject.employeeDepartment,
+          employeeRole: empObject.employeeRole,
+        };
+        await axios.put(`${BASE_URL}/${editId}`, updatedEmp);
         Swal.fire("Updated!", "Employee details updated!", "success");
       } else {
         await axios.post(BASE_URL, empObject);
         Swal.fire("Added!", "New Employee added successfully!", "success");
       }
+
       setEmpObject({
         employeeName: "",
         employeeEmail: "",
@@ -90,10 +98,17 @@ export const CRUD = () => {
 
   // Edit employee
   const editEmployee = (emp) => {
-    setEmpObject(emp);
-    setEditId(emp._id);
+    setEmpObject({
+      employeeName: emp.employeeName || "",
+      employeeEmail: emp.employeeEmail || "",
+      employeePhone: emp.employeePhone || "",
+      employeeDepartment: emp.employeeDepartment || "",
+      employeeRole: emp.employeeRole || "",
+    });
+    setEditId(emp._id); // ye zaruri hai, id ko edit track karne ke liye
     setIsModalOpen(true);
   };
+
 
   // Filter employee list based on search
   const filteredList = employeeList.filter(
@@ -138,8 +153,8 @@ export const CRUD = () => {
       </div>
 
       {/* Employee Cards */}
-      {/* <div className="relative z-10 w-full max-w-6xl"> */}
-      <div className="p-4 border rounded-lg shadow bg-white overflow-x-auto max-w-full">
+      <div className="relative z-10 w-full max-w-6xl">
+
         {loading ? (
           <div className="text-center text-gray-300 mt-10 text-lg">Loading...</div>
         ) : filteredList.length === 0 ? (
@@ -154,10 +169,10 @@ export const CRUD = () => {
                 <h2 className="text-2xl font-semibold text-emerald-300 mb-1">
                   {emp.employeeName}
                 </h2>
-                <p className="text-gray-200 font-medium mb-1">Email : {emp.employeeEmail}</p>
-                <p className="text-gray-200 font-medium mb-1">Phone No : {emp.employeePhone}</p>
-                <p className="text-gray-200 font-medium mb-1">Department : {emp.employeeDepartment}</p>
-                <p className="text-gray-200 font-medium mb-1">Role :{emp.employeeRole}</p>
+                <p className="text-gray-200 font-medium mb-1 break-words">Email : {emp.employeeEmail}</p>
+                <p className="text-gray-200 font-medium mb-1" break-world>Phone No : {emp.employeePhone}</p>
+                <p className="text-gray-200 font-medium mb-1 break-words">Department : {emp.employeeDepartment}</p>
+                <p className="text-gray-200 font-medium mb-1 break-words">Role :{emp.employeeRole}</p>
 
                 <div className="flex justify-between mt-4">
                   <button
