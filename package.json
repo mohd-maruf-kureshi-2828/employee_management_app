@@ -16,6 +16,7 @@
     "@tailwindcss/vite": "^4.1.14",
     "axios": "^1.12.2",
     "gh-pages": "^6.3.0",
+    "lucide-react": "^0.546.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "sweetalert2": "^11.26.2",

@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 
 export const CRUD = () => {
   const BASE_URL =
-    "https://crudcrud.com/api/f35dbb29bb5044c1898d306d99e2c3c9/employees";
+    "https://68f37142fd14a9fcc428ce71.mockapi.io/employees";
 
   // State for employee list
   const [employeeList, setEmployeeList] = useState([]);
@@ -105,7 +105,7 @@ export const CRUD = () => {
       employeeDepartment: emp.employeeDepartment || "",
       employeeRole: emp.employeeRole || "",
     });
-    setEditId(emp._id); // ye zaruri hai, id ko edit track karne ke liye
+    setEditId(emp.id); // ye zaruri hai, id ko edit track karne ke liye
     setIsModalOpen(true);
   };
 
@@ -163,14 +163,14 @@ export const CRUD = () => {
           <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {filteredList.map((emp) => (
               <div
-                key={emp._id}
+                key={emp.id}
                 className="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 shadow-xl hover:shadow-emerald-400/30 hover:scale-105 transform transition-all duration-300"
               >
                 <h2 className="text-2xl font-semibold text-emerald-300 mb-1">
                   {emp.employeeName}
                 </h2>
-                <p className="text-gray-200 font-medium mb-1 break-words">Email : {emp.employeeEmail}</p>
-                <p className="text-gray-200 font-medium mb-1" break-world>Phone No : {emp.employeePhone}</p>
+                <p className="text-gray-200 font-medium mb-1 break-words">Phone No : {emp.employeePhone}</p>
+                <p className="text-gray-200 font-medium mb-1 break-words" >Email : {emp.employeeEmail}</p>
                 <p className="text-gray-200 font-medium mb-1 break-words">Department : {emp.employeeDepartment}</p>
                 <p className="text-gray-200 font-medium mb-1 break-words">Role :{emp.employeeRole}</p>
 
@@ -182,7 +182,7 @@ export const CRUD = () => {
                     Edit
                   </button>
                   <button
-                    onClick={() => deleteEmployee(emp._id)}
+                    onClick={() => deleteEmployee(emp.id)}
                     className="bg-red-500 text-white font-medium px-4 py-2 rounded-xl hover:bg-red-600 transition-all duration-200"
                   >
                     Delete
@@ -225,7 +225,8 @@ export const CRUD = () => {
               required
             />
             <input
-              type="text"
+              type="number"
+              maxLength={10}
               name="employeePhone"
               placeholder="Phone"
               value={empObject.employeePhone}
@@ -286,4 +287,15 @@ export const CRUD = () => {
 
 
 
+
+
+
+
+
 // const BASE_URL = "https://crudcrud.com/api/b7b97d4bf43c4a09a8b0f86038f8b0ee/employees";
+
+
+
+
+
+
